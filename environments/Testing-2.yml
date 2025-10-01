@@ -1,0 +1,14 @@
+fileVersion: 1
+id: "2"
+mappingDefinitions:
+  BRONZE:
+    database: ""
+    schema: ""
+  GOLD:
+    database: ""
+    schema: ""
+  SILVER:
+    database: ""
+    schema: ""
+name: Testing
+type: Environment

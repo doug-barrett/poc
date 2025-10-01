@@ -1,0 +1,14 @@
+fileVersion: 1
+id: "3"
+mappingDefinitions:
+  BRONZE:
+    database: ""
+    schema: ""
+  GOLD:
+    database: ""
+    schema: ""
+  SILVER:
+    database: ""
+    schema: ""
+name: Production
+type: Environment
