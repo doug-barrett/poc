@@ -2,13 +2,13 @@ fileVersion: 1
 id: "2"
 mappingDefinitions:
   BRONZE:
-    database: ""
-    schema: ""
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF1
   GOLD:
-    database: ""
-    schema: ""
+    database: COALESCE_QA
+    schema: GOLD
   SILVER:
-    database: ""
-    schema: ""
+    database: COALESCE_QA
+    schema: SILVER
 name: Testing
 type: Environment

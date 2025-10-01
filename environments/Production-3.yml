@@ -2,13 +2,13 @@ fileVersion: 1
 id: "3"
 mappingDefinitions:
   BRONZE:
-    database: ""
-    schema: ""
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF1
   GOLD:
-    database: ""
-    schema: ""
+    database: COALESCE_PROD
+    schema: GOLD
   SILVER:
-    database: ""
-    schema: ""
+    database: COALESCE_PROD
+    schema: SILVER
 name: Production
 type: Environment
