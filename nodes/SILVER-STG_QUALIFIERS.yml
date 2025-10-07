@@ -1,0 +1,72 @@
+fileVersion: 1
+id: 4c838cab-5a0a-41f2-afe5-9466cefff120
+name: STG_QUALIFIERS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Create the field Qualified, based on custom data
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 87a562f3-aaf9-4dca-a2a0-0c14e4e6271e
+          stepCounter: 4c838cab-5a0a-41f2-afe5-9466cefff120
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 87a562f3-aaf9-4dca-a2a0-0c14e4e6271e
+                stepCounter: 4c838cab-5a0a-41f2-afe5-9466cefff120
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: dfe5d642-5fce-4497-b68a-d06a81d704a8
+          stepCounter: 4c838cab-5a0a-41f2-afe5-9466cefff120
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: QUALIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: dfe5d642-5fce-4497-b68a-d06a81d704a8
+                stepCounter: 4c838cab-5a0a-41f2-afe5-9466cefff120
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_PERSON_CUSTOM_DATA_ENTRIES_CUSTOM_TEXT"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: SL_PERSONS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'SL_PERSONS') }} SP
+            WHERE SP.ALL_EXTENSION_EMPLOYEE_EXTENSION_PERSON_CUSTOM_DATA_ENTRIES_CUSTOM_DATA_TYPE = 'Qualified'
+        name: STG_NODE
+        noLinkRefs: []
+  name: STG_QUALIFIERS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

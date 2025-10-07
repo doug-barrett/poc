@@ -1,0 +1,168 @@
+fileVersion: 1
+id: 016f4a33-c30b-43c6-98f6-f61e37ee1779
+name: TIMECARDS_UPDATES
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: BRONZE_UKG
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c6c9057c-cd63-4cd8-9c74-4100f92b8a7f
+          stepCounter: 016f4a33-c30b-43c6-98f6-f61e37ee1779
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: EMPLOYEE_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6fc11685-c401-4d28-b6a1-cac0ad299ad4
+          stepCounter: 016f4a33-c30b-43c6-98f6-f61e37ee1779
+        config: {}
+        dataType: TIMESTAMP_NTZ(9)
+        defaultValue: ""
+        description: ""
+        name: UPDATE_DATE_TIME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: c7b2d903-5321-4a96-bc19-ddd1b92c1f7e
+          stepCounter: 016f4a33-c30b-43c6-98f6-f61e37ee1779
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: UPDATE_BY_PERSON_FULL_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 35d7c3a0-af5c-47bf-94bc-eab7db36b539
+          stepCounter: 016f4a33-c30b-43c6-98f6-f61e37ee1779
+        config: {}
+        dataType: BOOLEAN
+        defaultValue: ""
+        description: ""
+        name: IS_EDITED_IN_SIGNED_OFF
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 312f0b42-4c96-4589-b452-8d7479fdbe0b
+          stepCounter: 016f4a33-c30b-43c6-98f6-f61e37ee1779
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: TYPE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83d62f61-1ec2-4041-8bd3-355404ed72ac
+          stepCounter: 016f4a33-c30b-43c6-98f6-f61e37ee1779
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: APPLY_START_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0d36c1f7-f408-48b5-9d2a-9c08ecc4ff60
+          stepCounter: 016f4a33-c30b-43c6-98f6-f61e37ee1779
+        config: {}
+        dataType: DATE
+        defaultValue: ""
+        description: ""
+        name: APPLY_END_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: eee987d9-d8f9-42b9-94d7-1da019d7ef2b
+          stepCounter: 016f4a33-c30b-43c6-98f6-f61e37ee1779
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: SYMBOLIC_PERIOD
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: TIMECARDS_UPDATES
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

@@ -1,0 +1,114 @@
+fileVersion: 1
+id: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+name: STG_WAGES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Extract each employee's wage information
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d88c9ba-7256-4116-952c-e31bd321a8a8
+          stepCounter: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d88c9ba-7256-4116-952c-e31bd321a8a8
+                stepCounter: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+            transform: SP."ALL_EXTENSION_TIMEKEEPING_EXTENSION_PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 434ffaaa-3b1d-46c8-87be-907e5cf42d6b
+          stepCounter: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: WAGE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 434ffaaa-3b1d-46c8-87be-907e5cf42d6b
+                stepCounter: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+            transform: SP."ALL_EXTENSION_TIMEKEEPING_EXTENSION_BASE_WAGES_BASE_WAGE_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d25cee47-aa62-4569-8051-8df5f88dd02c
+          stepCounter: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: WAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d25cee47-aa62-4569-8051-8df5f88dd02c
+                stepCounter: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+            transform: SP."ALL_EXTENSION_TIMEKEEPING_EXTENSION_BASE_WAGES_HOURLY_RATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a05f593b-1646-4880-9d42-c9b1448a0d9a
+          stepCounter: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+        config: {}
+        dataType: DATE
+        description: ""
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a05f593b-1646-4880-9d42-c9b1448a0d9a
+                stepCounter: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+            transform: TO_DATE(SP."ALL_EXTENSION_TIMEKEEPING_EXTENSION_BASE_WAGES_EFFECTIVE_DATE", 'YYYY-MM-DD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c8d41c70-d124-48fc-95db-fe1816060d31
+          stepCounter: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+        config: {}
+        dataType: DATE
+        description: ""
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c8d41c70-d124-48fc-95db-fe1816060d31
+                stepCounter: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+            transform: TO_DATE(SP."ALL_EXTENSION_TIMEKEEPING_EXTENSION_BASE_WAGES_EXPIRATION_DATE", 'YYYY-MM-DD')
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: SL_PERSONS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'SL_PERSONS') }} SP
+            WHERE TO_DATE(SP.ALL_EXTENSION_TIMEKEEPING_EXTENSION_BASE_WAGES_EFFECTIVE_DATE, 'YYYY-MM-DD') IS NOT NULL
+        name: STG_NODE1
+        noLinkRefs: []
+  name: STG_WAGES
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

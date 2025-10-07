@@ -1,0 +1,86 @@
+fileVersion: 1
+id: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+name: STG_S
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Filter segments to ensure next start is not null
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 076c78ea-68e9-4d9b-8608-85d70686fd4e
+          stepCounter: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 076c78ea-68e9-4d9b-8608-85d70686fd4e
+                stepCounter: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+            transform: SEG."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c66df0f9-569e-4e8d-b3e6-c5069c37c7b5
+          stepCounter: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+        config: {}
+        dataType: DATE
+        description: ""
+        name: SEGMENT_START
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c66df0f9-569e-4e8d-b3e6-c5069c37c7b5
+                stepCounter: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+            transform: SEG."SEGMENT_START"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ecd4f96-3a2f-444f-a150-ede86b79cacf
+          stepCounter: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+        config: {}
+        dataType: DATE
+        description: ""
+        name: NEXT_START
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ecd4f96-3a2f-444f-a150-ede86b79cacf
+                stepCounter: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+            transform: SEG."NEXT_START"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_SEGMENTS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_SEGMENTS') }} SEG
+            WHERE SEG.NEXT_START IS NOT NULL
+        name: STG_JOBS_WAGES_EMPLOYEE_STATUSES_ACCOUNT_STATUSES3
+        noLinkRefs: []
+  name: STG_S
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,110 @@
+fileVersion: 1
+id: 76e27336-37ce-48d9-9981-c05ac8ffbf8c
+name: STG_WFS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: All wage segments per employee with ranking
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8690052e-54a2-4a96-81c0-ca0871165250
+          stepCounter: 76e27336-37ce-48d9-9981-c05ac8ffbf8c
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8690052e-54a2-4a96-81c0-ca0871165250
+                stepCounter: 76e27336-37ce-48d9-9981-c05ac8ffbf8c
+            transform: S."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fe9b3084-97ea-4458-b529-76620a0220db
+          stepCounter: 76e27336-37ce-48d9-9981-c05ac8ffbf8c
+        config: {}
+        dataType: DATE
+        description: ""
+        name: SEGMENT_START
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fe9b3084-97ea-4458-b529-76620a0220db
+                stepCounter: 76e27336-37ce-48d9-9981-c05ac8ffbf8c
+            transform: S."SEGMENT_START"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5f27786e-cef7-4a01-b6d6-4da4c45e6d99
+          stepCounter: 76e27336-37ce-48d9-9981-c05ac8ffbf8c
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: WAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f27786e-cef7-4a01-b6d6-4da4c45e6d99
+                stepCounter: 76e27336-37ce-48d9-9981-c05ac8ffbf8c
+            transform: W."WAGE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9fc2091a-ea31-40f3-8089-83f756565964
+          stepCounter: 76e27336-37ce-48d9-9981-c05ac8ffbf8c
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: WAGE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9fc2091a-ea31-40f3-8089-83f756565964
+                stepCounter: 76e27336-37ce-48d9-9981-c05ac8ffbf8c
+            transform: W."WAGE_ID"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          S: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+          W: 0236a915-4dcd-4cdb-b2b1-1a0e599c2160
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_S
+          - locationName: SILVER
+            nodeName: STG_WAGES
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_S') }} S
+            JOIN {{ ref('SILVER', 'STG_WAGES') }} W
+              ON W.PERSON_ID = S.PERSON_ID
+             AND S.SEGMENT_START BETWEEN W.START_DATE AND W.END_DATE
+            QUALIFY ROW_NUMBER() OVER (
+                PARTITION BY S.PERSON_ID, S.SEGMENT_START
+                ORDER BY W.START_DATE DESC, W.WAGE_ID DESC
+            ) = 1
+        name: STG_S_WAGES
+        noLinkRefs: []
+  name: STG_WFS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

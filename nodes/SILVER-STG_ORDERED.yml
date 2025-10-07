@@ -1,0 +1,72 @@
+fileVersion: 1
+id: 6633827c-db72-4ff1-a89e-5f9459e3bd58
+name: STG_ORDERED
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Get all unique start dates
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e3836de5-e928-4a39-aa2b-dbde0f2875d0
+          stepCounter: 6633827c-db72-4ff1-a89e-5f9459e3bd58
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e3836de5-e928-4a39-aa2b-dbde0f2875d0
+                stepCounter: 6633827c-db72-4ff1-a89e-5f9459e3bd58
+            transform: P."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 735922ae-a4f2-4980-b79d-49f9a533b4fb
+          stepCounter: 6633827c-db72-4ff1-a89e-5f9459e3bd58
+        config: {}
+        dataType: DATE
+        description: ""
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 735922ae-a4f2-4980-b79d-49f9a533b4fb
+                stepCounter: 6633827c-db72-4ff1-a89e-5f9459e3bd58
+            transform: P."START_DATE"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_POINTS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_POINTS') }} P
+            GROUP BY PERSON_ID, START_DATE
+        name: STG_JOBS_WAGES_EMPLOYEE_STATUSES_ACCOUNT_STATUSES1
+        noLinkRefs: []
+  name: STG_ORDERED
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

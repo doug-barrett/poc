@@ -1,11 +1,11 @@
 fileVersion: 1
-id: 98186c0f-82c1-44c0-ae56-cd147e638e4f
-name: CUSTOMER
+id: 7af162eb-2732-4abd-b9ed-d15afbfb7903
+name: PAY_SCALE_LOOKUP
 operation:
   database: ""
   deployEnabled: true
-  description: Customer data as defined by TPC-H
-  locationName: BRONZE
+  description: ""
+  locationName: BRONZE_SAP
   metadata:
     columns:
       - acceptedValues:
@@ -13,127 +13,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: bb02a35b-fa47-4e77-9311-7c583b6d6abc
-          stepCounter: 98186c0f-82c1-44c0-ae56-cd147e638e4f
+          columnCounter: 0540773d-3db2-4446-a90d-c05f97ae5150
+          stepCounter: 7af162eb-2732-4abd-b9ed-d15afbfb7903
         config: {}
         dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: C_CUSTKEY
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 4d1aad02-a3c1-444e-a514-975a98e25818
-          stepCounter: 98186c0f-82c1-44c0-ae56-cd147e638e4f
-        config: {}
-        dataType: VARCHAR(25)
-        defaultValue: ""
-        description: ""
-        name: C_NAME
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 3cd3b29f-e4f8-44eb-8ef2-ec7d4a2c238c
-          stepCounter: 98186c0f-82c1-44c0-ae56-cd147e638e4f
-        config: {}
-        dataType: VARCHAR(40)
-        defaultValue: ""
-        description: ""
-        name: C_ADDRESS
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: f9565219-c8f2-4df9-b4a3-7f07c6497c83
-          stepCounter: 98186c0f-82c1-44c0-ae56-cd147e638e4f
-        config: {}
-        dataType: NUMBER(38,0)
-        defaultValue: ""
-        description: ""
-        name: C_NATIONKEY
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 4386dc68-b1ba-4cca-b2fb-615ff81bade9
-          stepCounter: 98186c0f-82c1-44c0-ae56-cd147e638e4f
-        config: {}
-        dataType: VARCHAR(15)
-        defaultValue: ""
-        description: ""
-        name: C_PHONE
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 665f45fc-4d55-4bb0-9000-f4a376166123
-          stepCounter: 98186c0f-82c1-44c0-ae56-cd147e638e4f
-        config: {}
-        dataType: NUMBER(12,2)
-        defaultValue: ""
-        description: ""
-        name: C_ACCTBAL
-        nullable: false
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 4181d8a1-ec6a-41b3-8f97-0abf7d9e8760
-          stepCounter: 98186c0f-82c1-44c0-ae56-cd147e638e4f
-        config: {}
-        dataType: VARCHAR(10)
-        defaultValue: ""
-        description: ""
-        name: C_MKTSEGMENT
+        name: START_DATE
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -146,13 +32,13 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 1e2ad932-5cb0-4ad4-b111-7a60847c4e6d
-          stepCounter: 98186c0f-82c1-44c0-ae56-cd147e638e4f
+          columnCounter: fecd979d-89f0-464b-b31c-4555635ea16a
+          stepCounter: 7af162eb-2732-4abd-b9ed-d15afbfb7903
         config: {}
-        dataType: VARCHAR(117)
+        dataType: NUMBER(38,0)
         defaultValue: ""
         description: ""
-        name: C_COMMENT
+        name: CHANGE_DATE
         nullable: true
         primaryKey: false
         sourceColumnReferences:
@@ -160,7 +46,83 @@ operation:
             transform: ""
         transform: ""
         uniqueKey: false
-  name: CUSTOMER
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 60ccb687-eda8-4270-b424-e89ca90dad4c
+          stepCounter: 7af162eb-2732-4abd-b9ed-d15afbfb7903
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: END_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: cadcee9d-1ddd-4848-932b-de658eaa0498
+          stepCounter: 7af162eb-2732-4abd-b9ed-d15afbfb7903
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: OBJECT_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 724653dd-e03b-4189-a1e6-dc6ab699d6ef
+          stepCounter: 7af162eb-2732-4abd-b9ed-d15afbfb7903
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: OBJECT_ABBREVIATION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 21ae7206-dbc9-4873-8814-c705b6bb9938
+          stepCounter: 7af162eb-2732-4abd-b9ed-d15afbfb7903
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: OBJECT_NAME
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: PAY_SCALE_LOOKUP
   schema: ""
   sqlType: Source
   type: sourceInput

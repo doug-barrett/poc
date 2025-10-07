@@ -2,5 +2,7 @@ defaultStorageMapping: SILVER
 fileVersion: 1
 locations:
   - BRONZE
+  - BRONZE_SAP
+  - BRONZE_UKG
   - GOLD
   - SILVER

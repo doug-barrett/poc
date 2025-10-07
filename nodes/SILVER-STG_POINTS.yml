@@ -1,0 +1,93 @@
+fileVersion: 1
+id: 78853177-8e8c-40a5-b659-f9d5358dd16a
+name: STG_POINTS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Extract all start and end dates from various sources
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5cc9cd5c-4ce0-4b84-91e7-44f3801c93f2
+          stepCounter: 78853177-8e8c-40a5-b659-f9d5358dd16a
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5cc9cd5c-4ce0-4b84-91e7-44f3801c93f2
+                stepCounter: 78853177-8e8c-40a5-b659-f9d5358dd16a
+            transform: POINTS."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4f068741-3a18-4018-b28b-65239d86a281
+          stepCounter: 78853177-8e8c-40a5-b659-f9d5358dd16a
+        config: {}
+        dataType: DATE
+        description: ""
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4f068741-3a18-4018-b28b-65239d86a281
+                stepCounter: 78853177-8e8c-40a5-b659-f9d5358dd16a
+            transform: POINTS."START_DATE"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_ACCOUNT_STATUSES
+          - locationName: SILVER
+            nodeName: STG_EMPLOYEE_STATUSES
+          - locationName: SILVER
+            nodeName: STG_JOBS
+          - locationName: SILVER
+            nodeName: STG_WAGES
+        join:
+          joinCondition: |-
+            FROM (
+                SELECT PERSON_ID, START_DATE FROM {{ ref('SILVER', 'STG_JOBS') }}
+                UNION
+                SELECT PERSON_ID, END_DATE FROM {{ ref('SILVER', 'STG_JOBS') }}
+                UNION
+                SELECT PERSON_ID, START_DATE FROM {{ ref('SILVER', 'STG_WAGES') }}
+                UNION
+                SELECT PERSON_ID, END_DATE FROM {{ ref('SILVER', 'STG_WAGES') }}
+                UNION
+                SELECT PERSON_ID, START_DATE FROM {{ ref('SILVER', 'STG_EMPLOYEE_STATUSES') }}
+                UNION
+                SELECT PERSON_ID, END_DATE FROM {{ ref('SILVER', 'STG_EMPLOYEE_STATUSES') }}
+                UNION
+                SELECT PERSON_ID, START_DATE FROM {{ ref('SILVER', 'STG_ACCOUNT_STATUSES') }}
+                UNION
+                SELECT PERSON_ID, END_DATE FROM {{ ref('SILVER', 'STG_ACCOUNT_STATUSES') }}
+            ) POINTS
+        name: STG_POINTS
+        noLinkRefs: []
+  name: STG_POINTS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

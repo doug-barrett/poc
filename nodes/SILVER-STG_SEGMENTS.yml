@@ -1,0 +1,84 @@
+fileVersion: 1
+id: 9da4df44-82d9-4b46-b8d3-80b810a3e666
+name: STG_SEGMENTS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Set up all possible segments for each employee
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b311942b-c1b5-4e37-ab50-0e457bb07539
+          stepCounter: 9da4df44-82d9-4b46-b8d3-80b810a3e666
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b311942b-c1b5-4e37-ab50-0e457bb07539
+                stepCounter: 9da4df44-82d9-4b46-b8d3-80b810a3e666
+            transform: O."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4f8378ca-3e5c-4d1c-be1b-5c30e035ac12
+          stepCounter: 9da4df44-82d9-4b46-b8d3-80b810a3e666
+        config: {}
+        dataType: DATE
+        description: ""
+        name: SEGMENT_START
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4f8378ca-3e5c-4d1c-be1b-5c30e035ac12
+                stepCounter: 9da4df44-82d9-4b46-b8d3-80b810a3e666
+            transform: O."START_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5efc0bb4-6ada-4f47-8c1a-3efeeae9fb56
+          stepCounter: 9da4df44-82d9-4b46-b8d3-80b810a3e666
+        config: {}
+        dataType: DATE
+        description: ""
+        name: NEXT_START
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5efc0bb4-6ada-4f47-8c1a-3efeeae9fb56
+                stepCounter: 9da4df44-82d9-4b46-b8d3-80b810a3e666
+            transform: LEAD(O."START_DATE") OVER (PARTITION BY O."PERSON_ID" ORDER BY O."START_DATE")
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_ORDERED
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'STG_ORDERED') }} O
+        name: STG_JOBS_WAGES_EMPLOYEE_STATUSES_ACCOUNT_STATUSES2
+        noLinkRefs: []
+  name: STG_SEGMENTS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

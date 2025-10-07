@@ -1,0 +1,143 @@
+fileVersion: 1
+id: 7bfeb554-3950-4ef0-a138-c464ff738883
+name: STG_LOCATION_JOBS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Filtering the SL_LOCATIONS to only have locations that are jobs
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 16211a3c-9efc-4fc6-99c1-3a9580f0308d
+          stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NODE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 16211a3c-9efc-4fc6-99c1-3a9580f0308d
+                stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+            transform: SL."NODE_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3d1f991d-ea57-480c-a9b2-6d5386c6f147
+          stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: GENERIC_JOB_REF_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3d1f991d-ea57-480c-a9b2-6d5386c6f147
+                stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+            transform: SL."GENERIC_JOB_REF_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4bfd723b-3bfc-43c2-8466-3f0541238d6d
+          stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: GENERIC_JOB_REF_QUALIFIER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4bfd723b-3bfc-43c2-8466-3f0541238d6d
+                stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+            transform: SL."GENERIC_JOB_REF_QUALIFIER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0afa396e-0ad7-47a7-a0d6-58d7ae2d3930
+          stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PARENT_NODE_REF_QUALIFIER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0afa396e-0ad7-47a7-a0d6-58d7ae2d3930
+                stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+            transform: SL."PARENT_NODE_REF_QUALIFIER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9be3edc3-1839-4fc0-a91d-0eda6101266e
+          stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9be3edc3-1839-4fc0-a91d-0eda6101266e
+                stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+            transform: SL."NAME"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac5ee3af-8db4-44fa-bc4b-5efaf46fe7d1
+          stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: DESCRIPTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac5ee3af-8db4-44fa-bc4b-5efaf46fe7d1
+                stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+            transform: SL."DESCRIPTION"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c088791-82f3-4391-8c22-23f5037a0cfd
+          stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORG_PATH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5c088791-82f3-4391-8c22-23f5037a0cfd
+                stepCounter: 7bfeb554-3950-4ef0-a138-c464ff738883
+            transform: SL."ORG_PATH"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: SL_LOCATIONS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'SL_LOCATIONS') }} SL
+            WHERE SL.ORG_NODE_TYPE_REF_QUALIFIER = 'Job' 
+              AND SL.ORG_NODE_TYPE_REF_ID = -1
+        name: STG_LOCATION_JOBS
+        noLinkRefs: []
+  name: STG_LOCATION_JOBS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

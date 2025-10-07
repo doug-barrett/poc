@@ -4,6 +4,12 @@ mappingDefinitions:
   BRONZE:
     database: SNOWFLAKE_SAMPLE_DATA
     schema: TPCH_SF1
+  BRONZE_SAP:
+    database: ""
+    schema: ""
+  BRONZE_UKG:
+    database: ""
+    schema: ""
   GOLD:
     database: COALESCE_QA
     schema: GOLD

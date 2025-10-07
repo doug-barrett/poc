@@ -1,0 +1,172 @@
+fileVersion: 1
+id: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+name: STG_PAY_SCALE
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Join all SAP tables and calculate pay scale data
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e48ddd4c-4c91-44b7-9654-b49aa8769ace
+          stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: OBJECT_ABBREVIATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e48ddd4c-4c91-44b7-9654-b49aa8769ace
+                stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+            transform: HRP1000."OBJECT_ABBREVIATION"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4d67c441-4ba3-4fa0-a680-e06e7fbcaa8f
+          stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: OBJECT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4d67c441-4ba3-4fa0-a680-e06e7fbcaa8f
+                stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+            transform: HRP1000."OBJECT_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1fbd17a7-6c8e-4189-861e-1b4609a2a254
+          stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSONNEL_AREA_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1fbd17a7-6c8e-4189-861e-1b4609a2a254
+                stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+            transform: HRP1008."PERSONNEL_AREA_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 38e3c14b-8260-414b-8b58-452539087b2e
+          stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LEVEL_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 38e3c14b-8260-414b-8b58-452539087b2e
+                stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+            transform: T510."LEVEL_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7ea9943a-1846-4347-b783-9f30875bdb30
+          stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7ea9943a-1846-4347-b783-9f30875bdb30
+                stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+            transform: CASE WHEN T510."WAGE_TYPE_ID" IS NOT NULL THEN CASE SUBSTRING(T510."WAGE_TYPE_ID", 4, 1) WHEN '2' THEN '2' WHEN '3' THEN '3' WHEN 'D' THEN '4' END END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 685eddd2-d836-486e-81f2-c551bea7d11a
+          stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: AMOUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 685eddd2-d836-486e-81f2-c551bea7d11a
+                stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+            transform: T510."AMOUNT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f83292f7-e1a8-428f-984d-f537c99f9276
+          stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e3a74807-302d-4808-857b-cf8696fd0560
+                stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
+            transform: CAST(GREATEST(CAST(HRP1000."START_DATE" AS INTEGER), CAST(HRP1008."START_DATE" AS INTEGER), CAST(HRP1005."START_DATE" AS INTEGER), CAST(T510."START_DATE" AS INTEGER)) AS VARCHAR)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d0d5cbe-8ea5-4230-a42d-15d0013880e8
+          stepCounter: 83528bc9-a605-48a2-ad90-a6997a03c0c7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6c903282-b4df-4323-838e-b1bf81591eec
+                stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
+            transform: CAST(LEAST(CAST(HRP1000."END_DATE" AS INTEGER), CAST(HRP1008."END_DATE" AS INTEGER), CAST(HRP1005."END_DATE" AS INTEGER), CAST(T510."END_DATE" AS INTEGER)) AS VARCHAR)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          HRP1000: 67d86ff2-ad6c-417b-ad6e-39c652f73392
+          HRP1005: 0823b276-c618-438f-a386-386dc589ffe2
+          HRP1008: 57e32627-5592-4e98-8775-768a858de271
+          T510: 16ac67ce-c4e0-437a-8d48-f55985d65299
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: BRONZE_SAP
+            nodeName: HRP1000
+          - locationName: BRONZE_SAP
+            nodeName: HRP1005
+          - locationName: BRONZE_SAP
+            nodeName: HRP1008
+          - locationName: BRONZE_SAP
+            nodeName: T510
+        join:
+          joinCondition: |-
+            FROM {{ ref('BRONZE_SAP', 'HRP1000') }} HRP1000
+            JOIN {{ ref('BRONZE_SAP', 'HRP1008') }} HRP1008 ON HRP1008."OBJECT_ID" = HRP1000."OBJECT_ID"
+            JOIN {{ ref('BRONZE_SAP', 'HRP1005') }} HRP1005 ON HRP1005."OBJECT_ID" = HRP1008."OBJECT_ID"
+            JOIN {{ ref('BRONZE_SAP', 'T510') }} T510 ON T510."COUNTRY_ID" = HRP1005."COUNTRY_ID"
+                AND T510."TYPE_ID" = HRP1005."TYPE_ID"
+                AND T510."AREA_ID" = HRP1005."AREA_ID"
+                AND T510."GROUP_ID" = HRP1005."GROUP_ID"
+                AND T510."LEVEL_ID" = HRP1005."LEVEL_ID"
+        name: STG_PAY_SCALE
+        noLinkRefs: []
+  name: STG_PAY_SCALE
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

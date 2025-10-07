@@ -1,0 +1,142 @@
+fileVersion: 1
+id: b2f4eaf2-e2d9-4909-a773-a272f9052654
+name: STG_JOBS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Extract each employee's job information
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: af51d2ff-7095-4ebd-baff-39f942ae2fed
+          stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: af51d2ff-7095-4ebd-baff-39f942ae2fed
+                stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 142b8f26-404f-45bf-8aea-a225ec338e62
+          stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: JOB
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 142b8f26-404f-45bf-8aea-a225ec338e62
+                stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_PRIMARY_JOB_ACCOUNT_ENTRIES_PRIMARY_ORGANIZATION_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b45430e-9c7a-46e9-8415-7f0108460e60
+          stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LABOR_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b45430e-9c7a-46e9-8415-7f0108460e60
+                stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_PRIMARY_JOB_ACCOUNT_ENTRIES_PRIMARY_LABOR_CATEGORY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d5435639-336f-4bce-8547-eab1e69cb50b
+          stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LABOR_CATEGORY_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d5435639-336f-4bce-8547-eab1e69cb50b
+                stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_PRIMARY_JOB_ACCOUNT_ENTRIES_PRIMARY_LABOR_CATEGORY_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8924a8aa-9a6e-4184-a67c-4cb346a1df28
+          stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORGANIZATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8924a8aa-9a6e-4184-a67c-4cb346a1df28
+                stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_PRIMARY_JOB_ACCOUNT_ENTRIES_PRIMARY_ORGANIZATION_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 408d8871-ee73-4be4-b8bf-e4fd38ba22fd
+          stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+        config: {}
+        dataType: DATE
+        description: ""
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 408d8871-ee73-4be4-b8bf-e4fd38ba22fd
+                stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+            transform: TO_DATE(SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_PRIMARY_JOB_ACCOUNT_ENTRIES_EFFECTIVE_DATE", 'YYYY-MM-DD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 738cc262-3ad6-4ae2-a185-ac50124ebfd6
+          stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+        config: {}
+        dataType: DATE
+        description: ""
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 738cc262-3ad6-4ae2-a185-ac50124ebfd6
+                stepCounter: b2f4eaf2-e2d9-4909-a773-a272f9052654
+            transform: TO_DATE(SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_PRIMARY_JOB_ACCOUNT_ENTRIES_EXPIRATION_DATE", 'YYYY-MM-DD')
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: SL_PERSONS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'SL_PERSONS') }} SP
+            WHERE TO_DATE(SP.ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_PRIMARY_JOB_ACCOUNT_ENTRIES_EFFECTIVE_DATE, 'YYYY-MM-DD') IS NOT NULL
+        name: STG_NODE
+        noLinkRefs: []
+  name: STG_JOBS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

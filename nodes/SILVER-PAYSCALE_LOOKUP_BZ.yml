@@ -1,0 +1,143 @@
+fileVersion: 1
+id: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+name: PAYSCALE_LOOKUP_BZ
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Final payscale lookup table with grouped and filtered data
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7af6eba6-8a98-404c-9b1e-eae134064c53
+          stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: JOB_PATH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7af6eba6-8a98-404c-9b1e-eae134064c53
+                stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+            transform: "\"OBJECT_ABBREVIATION\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bf8bb8a1-bb85-4335-ab77-93ef1bca17d9
+          stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSONNEL_AREA_PATH
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bf8bb8a1-bb85-4335-ab77-93ef1bca17d9
+                stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+            transform: "\"PERSONNEL_AREA_ID\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cbcd16f2-74bf-47c9-86f9-9de9ba8792d9
+          stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LEVEL_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cbcd16f2-74bf-47c9-86f9-9de9ba8792d9
+                stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+            transform: "\"LEVEL_ID\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3cf598a0-94fc-4d9c-82d9-ee5c29888d1c
+          stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3cf598a0-94fc-4d9c-82d9-ee5c29888d1c
+                stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+            transform: "\"SHIFT\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6f595e17-2cb5-4a9d-a30c-d80d5bdafd35
+          stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: AMOUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6f595e17-2cb5-4a9d-a30c-d80d5bdafd35
+                stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+            transform: "\"AMOUNT\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 44c7b7f6-51bb-4c10-b870-4714a23d8989
+          stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 44c7b7f6-51bb-4c10-b870-4714a23d8989
+                stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+            transform: "\"START_DATE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ece5db92-9c60-4a4c-865e-22d97497a78a
+          stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ece5db92-9c60-4a4c-865e-22d97497a78a
+                stepCounter: c3fa6b5e-5bc5-4451-b1d4-85db472305b4
+            transform: "\"END_DATE\""
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_PAY_SCALE
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_PAY_SCALE') }} PAY_SCALE
+            WHERE "START_DATE" < "END_DATE"
+            GROUP BY "OBJECT_ABBREVIATION", "PERSONNEL_AREA_ID", "LEVEL_ID", "SHIFT", "AMOUNT", "START_DATE", "END_DATE"
+        name: STG_HRP1000_HRP1008_HRP1005_NODE2
+        noLinkRefs: []
+  name: PAYSCALE_LOOKUP_BZ
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

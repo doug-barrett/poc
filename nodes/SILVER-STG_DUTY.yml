@@ -1,0 +1,72 @@
+fileVersion: 1
+id: 11dcd609-f9f9-47e0-ad1b-102427477572
+name: STG_DUTY
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Create the field LIGHT_DUTY
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5e2244bd-8423-46e5-a3e5-48bd9c2964d2
+          stepCounter: 11dcd609-f9f9-47e0-ad1b-102427477572
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5e2244bd-8423-46e5-a3e5-48bd9c2964d2
+                stepCounter: 11dcd609-f9f9-47e0-ad1b-102427477572
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0e775cf2-5329-4fa7-9944-a74a69ef54c8
+          stepCounter: 11dcd609-f9f9-47e0-ad1b-102427477572
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LIGHT_DUTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0e775cf2-5329-4fa7-9944-a74a69ef54c8
+                stepCounter: 11dcd609-f9f9-47e0-ad1b-102427477572
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_PERSON_CUSTOM_DATA_ENTRIES_CUSTOM_TEXT"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: SL_PERSONS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'SL_PERSONS') }} SP
+            WHERE SP.ALL_EXTENSION_EMPLOYEE_EXTENSION_PERSON_CUSTOM_DATA_ENTRIES_CUSTOM_DATA_TYPE = 'Restricted_Duty'
+        name: STG_NODE1
+        noLinkRefs: []
+  name: STG_DUTY
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

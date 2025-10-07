@@ -1,0 +1,267 @@
+fileVersion: 1
+id: d615693d-ce0c-4823-ac08-4e25e7617c68
+name: GD_PAYCODES
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: Dimension table for paycodes with standardized boolean fields and parent relationships
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0be6e1a1-a0ec-4137-91d2-e398a6759a37
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0be6e1a1-a0ec-4137-91d2-e398a6759a37
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: SL."ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0ae1d278-34a6-4458-889e-973aee7c8ab5
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0ae1d278-34a6-4458-889e-973aee7c8ab5
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: SL."TYPE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9680ee68-e3d1-4e02-afc0-58a91c3560e7
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: UNIT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9680ee68-e3d1-4e02-afc0-58a91c3560e7
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: SL."UNIT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a12c4ee3-0711-40da-bc6b-7cb07c1c2ebe
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a12c4ee3-0711-40da-bc6b-7cb07c1c2ebe
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: SL."NAME"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 914a213a-c797-4288-b7ce-1a2def9a69f3
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: SHORT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 914a213a-c797-4288-b7ce-1a2def9a69f3
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: SL."SHORT_NAME"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4a59c999-5507-4c09-b19b-88258b4dca1a
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: PARENT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4a59c999-5507-4c09-b19b-88258b4dca1a
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: SL."ID_PARENT"::INT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 678e22f9-1eff-4cf1-986e-0dc56f650dd6
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: PARENT_NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 678e22f9-1eff-4cf1-986e-0dc56f650dd6
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: SL."NAME_PARENT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 054906fa-bed1-4842-a4b4-d8457bf3e4d7
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: PARENT_LABEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 054906fa-bed1-4842-a4b4-d8457bf3e4d7
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: UPPER(SPLIT_PART(SL."NAME_PARENT", ' ', 3))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ee4699f9-06e0-49c2-b43d-8d4af6957ba2
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: WAGE_MULTIPLIER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ee4699f9-06e0-49c2-b43d-8d4af6957ba2
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: SL."WAGE_MULTIPLIER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 637b39ef-2250-4fa3-abfd-2d0929379d5a
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: false
+        name: WAGE_ADDITION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 637b39ef-2250-4fa3-abfd-2d0929379d5a
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: SL."WAGE_ADDITION"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 898734e2-f902-4ab5-9d2f-482a4536a0f6
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: SCHEDULED_HOURS_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 898734e2-f902-4ab5-9d2f-482a4536a0f6
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: SL."SCHEDULED_HOURS_TYPE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 54d341a4-85bc-4edd-9c23-002674eb2235
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: TOTALS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 54d341a4-85bc-4edd-9c23-002674eb2235
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: CASE WHEN SL."TOTALS" THEN 'Yes' ELSE 'No' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 56916289-618a-44eb-902e-88f51caedb85
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: EXCUSED_ABSENCE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 56916289-618a-44eb-902e-88f51caedb85
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: CASE WHEN SL."EXCUSED_ABSENCE" THEN 'Yes' ELSE 'No' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3ac037d5-ba3c-435c-b441-d45a6e23f34f
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: VISIBLE_TO_REPORTS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3ac037d5-ba3c-435c-b441-d45a6e23f34f
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: CASE WHEN SL."VISIBLE_TO_REPORTS" THEN 'Yes' ELSE 'No' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ff403c0-623e-4c88-81e1-e12839e17c01
+          stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: false
+        name: ADD_TO_TIMECARD_TOTAL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ff403c0-623e-4c88-81e1-e12839e17c01
+                stepCounter: d615693d-ce0c-4823-ac08-4e25e7617c68
+            transform: CASE WHEN SL."ADD_TO_TIMECARD_TOTAL" THEN 'Yes' ELSE 'No' END
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: SL_PAYCODES
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'SL_PAYCODES') }} SL
+            GROUP BY ID, TYPE, UNIT, NAME, SHORT_NAME, ID_PARENT, NAME_PARENT, WAGE_MULTIPLIER, WAGE_ADDITION, SCHEDULED_HOURS_TYPE, TOTALS, EXCUSED_ABSENCE, VISIBLE_TO_REPORTS, ADD_TO_TIMECARD_TOTAL
+        name: GD_PAYCODES
+        noLinkRefs: []
+  name: GD_PAYCODES
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node

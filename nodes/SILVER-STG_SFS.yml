@@ -1,0 +1,96 @@
+fileVersion: 1
+id: 82581f06-30b0-4852-959f-166b5cc7bb44
+name: STG_SFS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: All employment status segments per employee with ranking
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f7187f1c-413b-48a3-8ba6-8c4de54f0566
+          stepCounter: 82581f06-30b0-4852-959f-166b5cc7bb44
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f7187f1c-413b-48a3-8ba6-8c4de54f0566
+                stepCounter: 82581f06-30b0-4852-959f-166b5cc7bb44
+            transform: S."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c4568a19-5967-4b7b-95b6-4a5e6fd3a1ea
+          stepCounter: 82581f06-30b0-4852-959f-166b5cc7bb44
+        config: {}
+        dataType: DATE
+        description: ""
+        name: SEGMENT_START
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c4568a19-5967-4b7b-95b6-4a5e6fd3a1ea
+                stepCounter: 82581f06-30b0-4852-959f-166b5cc7bb44
+            transform: S."SEGMENT_START"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25d7f888-6882-444d-81dc-4b2be5ef5ea9
+          stepCounter: 82581f06-30b0-4852-959f-166b5cc7bb44
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25d7f888-6882-444d-81dc-4b2be5ef5ea9
+                stepCounter: 82581f06-30b0-4852-959f-166b5cc7bb44
+            transform: ST."STATUS"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          S: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+          ST: 5cc40a7a-bc0d-4fef-aec7-1519855e0f5a
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_EMPLOYEE_STATUSES
+          - locationName: SILVER
+            nodeName: STG_S
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_S') }} S
+            JOIN {{ ref('SILVER', 'STG_EMPLOYEE_STATUSES') }} ST
+              ON ST.PERSON_ID = S.PERSON_ID
+             AND S.SEGMENT_START BETWEEN ST.START_DATE AND ST.END_DATE
+            QUALIFY ROW_NUMBER() OVER (
+                PARTITION BY S.PERSON_ID, S.SEGMENT_START
+                ORDER BY ST.START_DATE DESC, ST.STATUS DESC
+            ) = 1
+        name: STG_S_EMPLOYEE_STATUSES
+        noLinkRefs: []
+  name: STG_SFS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,337 @@
+fileVersion: 1
+id: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+name: GD_PERSONS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Final employee segments with all attributes joined
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 504aecdf-55db-454b-a875-7a2c86958c59
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 504aecdf-55db-454b-a875-7a2c86958c59
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: S."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6dc40ba4-9a9f-4fbf-8896-a92e64a160dc
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_NUMBER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6dc40ba4-9a9f-4fbf-8896-a92e64a160dc
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: SP."ALL_EXTENSION_DEVICE_EXTENSION_PERSON_NUMBER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4995daa5-a934-4b5e-a5b7-78ef4d14865e
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: NAME
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4995daa5-a934-4b5e-a5b7-78ef4d14865e
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_FULL_NAME"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec897c9c-a789-4b6d-8e9c-d007e337e943
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ec897c9c-a789-4b6d-8e9c-d007e337e943
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: JFS."JOB"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: db83bbaa-b27c-4c0d-b996-e4dea3c05bf2
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EMPLOYEE_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: db83bbaa-b27c-4c0d-b996-e4dea3c05bf2
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_ACCESS_PROFILE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 14935a25-cd0b-4857-89f0-7ce9dfaeea26
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: HIRE_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 14935a25-cd0b-4857-89f0-7ce9dfaeea26
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: TO_CHAR(SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_HIRE_DATE", 'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53a02629-ac22-41cd-a2dd-3caabd6ef458
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53a02629-ac22-41cd-a2dd-3caabd6ef458
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: TO_CHAR(S."SEGMENT_START", 'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4da6df6c-52c7-4f85-ae3e-a6665d24af33
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4da6df6c-52c7-4f85-ae3e-a6665d24af33
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: TO_CHAR(DATEADD(DAY, -1, S."NEXT_START"), 'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 90935a1e-16da-45bd-a389-c679a8874350
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: BASE_WAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 90935a1e-16da-45bd-a389-c679a8874350
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: WFS."WAGE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 423030b7-fec9-4d99-8a9d-c203b2506a58
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 423030b7-fec9-4d99-8a9d-c203b2506a58
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: SPLIT_PART(JFS."LABOR_CATEGORY", ',', 1)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8e3086f8-531d-4982-a940-68282c2188ea
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PAYROLL_AREA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8e3086f8-531d-4982-a940-68282c2188ea
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: SPLIT_PART(JFS."LABOR_CATEGORY", ',', 2)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 23ab21e5-d9dd-47c7-9f3a-a0a0d9469918
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: CURRENCY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 23ab21e5-d9dd-47c7-9f3a-a0a0d9469918
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: SP."ALL_EXTENSION_TIMEKEEPING_EXTENSION_USER_CURRENCY_CURRENCY_CODE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d963d590-8d90-4b99-b173-c670fe8674e0
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: DEVICE_GROUP
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d963d590-8d90-4b99-b173-c670fe8674e0
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: SP."ALL_EXTENSION_DEVICE_EXTENSION_DEVICE_GROUP"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 3077e0f4-7079-4487-ae15-0b2a225b1f6d
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DEVICE_GROUP_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 3077e0f4-7079-4487-ae15-0b2a225b1f6d
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: SP."ALL_EXTENSION_DEVICE_EXTENSION_DEVICE_GROUP_ID"::INT
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f9082346-7f39-4594-bf54-5b6b32099f74
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: QUALIFIED
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f9082346-7f39-4594-bf54-5b6b32099f74
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: Q."QUALIFIED"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2692c502-cfa1-4342-8cd8-3abf39f64bb2
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LIGHT_DUTY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2692c502-cfa1-4342-8cd8-3abf39f64bb2
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: D."LIGHT_DUTY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ac51cd44-2390-426c-bbcb-a3908ce934bc
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: EMPLOYMENT_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ac51cd44-2390-426c-bbcb-a3908ce934bc
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: SFS."STATUS"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5ec4a6f4-fc21-4e13-98d0-b63032ba034d
+          stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: UKG_ACCOUNT_STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5ec4a6f4-fc21-4e13-98d0-b63032ba034d
+                stepCounter: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+            transform: AFS."STATUS"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          AFS: f4bfe642-8c9f-4e11-a655-0fdc9c5b85b0
+          D: 11dcd609-f9f9-47e0-ad1b-102427477572
+          JFS: 64afe05e-1587-425b-9865-981e5dea9942
+          Q: 4c838cab-5a0a-41f2-afe5-9466cefff120
+          S: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+          SFS: 82581f06-30b0-4852-959f-166b5cc7bb44
+          SP: 9f490651-1253-411a-80cb-7544a0605c51
+          WFS: 76e27336-37ce-48d9-9981-c05ac8ffbf8c
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: SL_PERSONS
+          - locationName: SILVER
+            nodeName: STG_AFS
+          - locationName: SILVER
+            nodeName: STG_DUTY
+          - locationName: SILVER
+            nodeName: STG_JFS
+          - locationName: SILVER
+            nodeName: STG_QUALIFIERS
+          - locationName: SILVER
+            nodeName: STG_S
+          - locationName: SILVER
+            nodeName: STG_SFS
+          - locationName: SILVER
+            nodeName: STG_WFS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_S') }} S
+            JOIN {{ ref('SILVER', 'SL_PERSONS') }} SP 
+              ON S.PERSON_ID = SP.ALL_EXTENSION_EMPLOYEE_EXTENSION_PERSON_ID
+            LEFT JOIN {{ ref('SILVER', 'STG_JFS') }} JFS 
+              ON JFS.PERSON_ID = S.PERSON_ID 
+             AND JFS.SEGMENT_START = S.SEGMENT_START
+            LEFT JOIN {{ ref('SILVER', 'STG_AFS') }} AFS 
+              ON AFS.PERSON_ID = S.PERSON_ID 
+             AND AFS.SEGMENT_START = S.SEGMENT_START
+            LEFT JOIN {{ ref('SILVER', 'STG_SFS') }} SFS 
+              ON SFS.PERSON_ID = S.PERSON_ID 
+             AND SFS.SEGMENT_START = S.SEGMENT_START
+            LEFT JOIN {{ ref('SILVER', 'STG_WFS') }} WFS 
+              ON WFS.PERSON_ID = S.PERSON_ID 
+             AND WFS.SEGMENT_START = S.SEGMENT_START
+            LEFT JOIN {{ ref('SILVER', 'STG_QUALIFIERS') }} Q 
+              ON Q.PERSON_ID = S.PERSON_ID
+            LEFT JOIN {{ ref('SILVER', 'STG_DUTY') }} D 
+              ON D.PERSON_ID = S.PERSON_ID
+            WHERE S.SEGMENT_START >= SP.ALL_EXTENSION_EMPLOYEE_EXTENSION_HIRE_DATE
+        name: GD_PERSONS
+        noLinkRefs: []
+  name: GD_PERSONS
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node

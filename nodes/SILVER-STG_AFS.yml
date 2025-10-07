@@ -1,0 +1,96 @@
+fileVersion: 1
+id: f4bfe642-8c9f-4e11-a655-0fdc9c5b85b0
+name: STG_AFS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: All UKG account status segments per employee with ranking
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7ed0258e-2398-4e60-8ddd-742b5c7abad3
+          stepCounter: f4bfe642-8c9f-4e11-a655-0fdc9c5b85b0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7ed0258e-2398-4e60-8ddd-742b5c7abad3
+                stepCounter: f4bfe642-8c9f-4e11-a655-0fdc9c5b85b0
+            transform: S."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5d18edc6-473d-4db9-8662-ed58904781b4
+          stepCounter: f4bfe642-8c9f-4e11-a655-0fdc9c5b85b0
+        config: {}
+        dataType: DATE
+        description: ""
+        name: SEGMENT_START
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5d18edc6-473d-4db9-8662-ed58904781b4
+                stepCounter: f4bfe642-8c9f-4e11-a655-0fdc9c5b85b0
+            transform: S."SEGMENT_START"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7ea98141-2a68-4480-b269-aba5c4b81d7e
+          stepCounter: f4bfe642-8c9f-4e11-a655-0fdc9c5b85b0
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7ea98141-2a68-4480-b269-aba5c4b81d7e
+                stepCounter: f4bfe642-8c9f-4e11-a655-0fdc9c5b85b0
+            transform: AC."STATUS"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          AC: 6683992b-7d7f-4376-ada3-b4e23253e225
+          S: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_ACCOUNT_STATUSES
+          - locationName: SILVER
+            nodeName: STG_S
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_S') }} S
+            JOIN {{ ref('SILVER', 'STG_ACCOUNT_STATUSES') }} AC
+              ON AC.PERSON_ID = S.PERSON_ID
+             AND S.SEGMENT_START BETWEEN AC.START_DATE AND AC.END_DATE
+            QUALIFY ROW_NUMBER() OVER (
+                PARTITION BY S.PERSON_ID, S.SEGMENT_START
+                ORDER BY AC.START_DATE DESC, AC.STATUS DESC
+            ) = 1
+        name: STG_S_ACCOUNT_STATUSES
+        noLinkRefs: []
+  name: STG_AFS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

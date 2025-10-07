@@ -1,0 +1,101 @@
+fileVersion: 1
+id: 6683992b-7d7f-4376-ada3-b4e23253e225
+name: STG_ACCOUNT_STATUSES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Extract employee's UKG account status information
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cc482f6b-4931-4b86-b5ac-0941dde5eab5
+          stepCounter: 6683992b-7d7f-4376-ada3-b4e23253e225
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cc482f6b-4931-4b86-b5ac-0941dde5eab5
+                stepCounter: 6683992b-7d7f-4376-ada3-b4e23253e225
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0737686c-dfee-4ed1-908e-5fe084b65c64
+          stepCounter: 6683992b-7d7f-4376-ada3-b4e23253e225
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0737686c-dfee-4ed1-908e-5fe084b65c64
+                stepCounter: 6683992b-7d7f-4376-ada3-b4e23253e225
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_ACCOUNT_STATUSES_ACCOUNT_STATUS"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 38937a0f-8b98-4e29-b110-009b9e8ea614
+          stepCounter: 6683992b-7d7f-4376-ada3-b4e23253e225
+        config: {}
+        dataType: DATE
+        description: ""
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 38937a0f-8b98-4e29-b110-009b9e8ea614
+                stepCounter: 6683992b-7d7f-4376-ada3-b4e23253e225
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_ACCOUNT_STATUSES_EFFECTIVE_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 94f0d5ab-74d7-430d-ac17-34a9c60e7fdf
+          stepCounter: 6683992b-7d7f-4376-ada3-b4e23253e225
+        config: {}
+        dataType: DATE
+        description: ""
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 94f0d5ab-74d7-430d-ac17-34a9c60e7fdf
+                stepCounter: 6683992b-7d7f-4376-ada3-b4e23253e225
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_ACCOUNT_STATUSES_EXPIRATION_DATE"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          SP: 9f490651-1253-411a-80cb-7544a0605c51
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: SL_PERSONS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'SL_PERSONS') }} SP
+            WHERE SP.ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_ACCOUNT_STATUSES_EFFECTIVE_DATE IS NOT NULL
+        name: STG_ACCOUNT_STATUSES
+        noLinkRefs: []
+  name: STG_ACCOUNT_STATUSES
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

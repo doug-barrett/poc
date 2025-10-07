@@ -1,0 +1,152 @@
+fileVersion: 1
+id: 64afe05e-1587-425b-9865-981e5dea9942
+name: STG_JFS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: All job segments per employee with ranking
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e563db62-2d61-4d1e-85e2-16fbf66d4ac9
+          stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e563db62-2d61-4d1e-85e2-16fbf66d4ac9
+                stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+            transform: S."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e2162531-888b-4fc0-9fae-8b7c1b5ca0b4
+          stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+        config: {}
+        dataType: DATE
+        description: ""
+        name: SEGMENT_START
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e2162531-888b-4fc0-9fae-8b7c1b5ca0b4
+                stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+            transform: S."SEGMENT_START"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e9bce9f4-f285-4e3b-8ce3-2767563d5d4e
+          stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+        config: {}
+        dataType: DATE
+        description: ""
+        name: NEXT_START
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e9bce9f4-f285-4e3b-8ce3-2767563d5d4e
+                stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+            transform: S."NEXT_START"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6ae67619-5281-4363-ad84-0cd0fff28acc
+          stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: JOB
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6ae67619-5281-4363-ad84-0cd0fff28acc
+                stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+            transform: J."JOB"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bd2b0128-5b59-4b2d-8a9b-4982a6f6feeb
+          stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LABOR_CATEGORY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bd2b0128-5b59-4b2d-8a9b-4982a6f6feeb
+                stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+            transform: J."LABOR_CATEGORY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5f5bddbe-77b6-4d21-acf5-920e25937305
+          stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: LABOR_CATEGORY_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5f5bddbe-77b6-4d21-acf5-920e25937305
+                stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+            transform: J."LABOR_CATEGORY_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1c35df76-2f8e-4f7a-b336-e5f473104fc9
+          stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORGANIZATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1c35df76-2f8e-4f7a-b336-e5f473104fc9
+                stepCounter: 64afe05e-1587-425b-9865-981e5dea9942
+            transform: J."ORGANIZATION_ID"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          J: b2f4eaf2-e2d9-4909-a773-a272f9052654
+          S: 40dd9d54-6b15-4197-9636-b2853a7a9b0c
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_JOBS
+          - locationName: SILVER
+            nodeName: STG_S
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_S') }} S
+            JOIN {{ ref('SILVER', 'STG_JOBS') }} J
+              ON J.PERSON_ID = S.PERSON_ID
+             AND S.SEGMENT_START BETWEEN J.START_DATE AND J.END_DATE
+            QUALIFY ROW_NUMBER() OVER (
+                PARTITION BY S.PERSON_ID, S.SEGMENT_START
+                ORDER BY J.START_DATE DESC, J.LABOR_CATEGORY_ID DESC
+            ) = 1
+        name: STG_S_JOBS
+        noLinkRefs: []
+  name: STG_JFS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

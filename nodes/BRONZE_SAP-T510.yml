@@ -1,0 +1,130 @@
+fileVersion: 1
+id: 16ac67ce-c4e0-437a-8d48-f55985d65299
+name: T510
+operation:
+  database: ""
+  deployEnabled: true
+  description: ""
+  locationName: BRONZE_SAP
+  metadata:
+    columns:
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 124da9d3-0854-4ad8-88c5-e4a4ae6fa766
+          stepCounter: 16ac67ce-c4e0-437a-8d48-f55985d65299
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: PERSONNEL_AREA_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 248e5e8d-088d-439c-9691-f77a48c180db
+          stepCounter: 16ac67ce-c4e0-437a-8d48-f55985d65299
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: PERSONNEL_AREA_DESCRIPTION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: ce2b1cdd-bdd5-44f2-845e-2a7cf79e99a5
+          stepCounter: 16ac67ce-c4e0-437a-8d48-f55985d65299
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: CHANGE_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 193de24c-6a89-4806-bfd6-1ac259184506
+          stepCounter: 16ac67ce-c4e0-437a-8d48-f55985d65299
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: START_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 19777261-e441-4da1-ac88-cd578608f367
+          stepCounter: 16ac67ce-c4e0-437a-8d48-f55985d65299
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: END_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0314868a-37ce-47ca-bdd6-49e28cc7f558
+          stepCounter: 16ac67ce-c4e0-437a-8d48-f55985d65299
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: OBJECT_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+  name: T510
+  schema: ""
+  sqlType: Source
+  type: sourceInput
+  version: 1
+type: Node

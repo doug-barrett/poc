@@ -1,0 +1,100 @@
+fileVersion: 1
+id: 5cc40a7a-bc0d-4fef-aec7-1519855e0f5a
+name: STG_EMPLOYEE_STATUSES
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Extract employee's employment status information
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c412b8bb-76dc-4a7f-a70f-d7ab1a566205
+          stepCounter: 5cc40a7a-bc0d-4fef-aec7-1519855e0f5a
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c412b8bb-76dc-4a7f-a70f-d7ab1a566205
+                stepCounter: 5cc40a7a-bc0d-4fef-aec7-1519855e0f5a
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 83f7c711-f33d-40a0-99d2-8e2ea8292c1e
+          stepCounter: 5cc40a7a-bc0d-4fef-aec7-1519855e0f5a
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: STATUS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 83f7c711-f33d-40a0-99d2-8e2ea8292c1e
+                stepCounter: 5cc40a7a-bc0d-4fef-aec7-1519855e0f5a
+            transform: SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EMPLOYMENT_STATUSES_EMPLOYMENT_STATUS"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 366bc99d-5481-47ee-8545-c142fca688fe
+          stepCounter: 5cc40a7a-bc0d-4fef-aec7-1519855e0f5a
+        config: {}
+        dataType: DATE
+        description: ""
+        name: START_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 366bc99d-5481-47ee-8545-c142fca688fe
+                stepCounter: 5cc40a7a-bc0d-4fef-aec7-1519855e0f5a
+            transform: TO_DATE(SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EMPLOYMENT_STATUSES_EFFECTIVE_DATE", 'YYYY-MM-DD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7837a397-2deb-43c5-b765-00cfad364e39
+          stepCounter: 5cc40a7a-bc0d-4fef-aec7-1519855e0f5a
+        config: {}
+        dataType: DATE
+        description: ""
+        name: END_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7837a397-2deb-43c5-b765-00cfad364e39
+                stepCounter: 5cc40a7a-bc0d-4fef-aec7-1519855e0f5a
+            transform: TO_DATE(SP."ALL_EXTENSION_EMPLOYEE_EXTENSION_EMPLOYMENT_STATUSES_EXPIRATION_DATE", 'YYYY-MM-DD')
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: SL_PERSONS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'SL_PERSONS') }} SP
+            WHERE TO_DATE(SP.ALL_EXTENSION_EMPLOYEE_EXTENSION_EMPLOYMENT_STATUSES_EFFECTIVE_DATE, 'YYYY-MM-DD') IS NOT NULL
+        name: STG_NODE1
+        noLinkRefs: []
+  name: STG_EMPLOYEE_STATUSES
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node
