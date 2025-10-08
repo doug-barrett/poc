@@ -21,7 +21,7 @@ operation:
           stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
         config: {}
         dataType: NUMBER
-        description: ""
+        description: Unique identifier for a specific physical location. Part of the composite key with ORGANIZATIONAL_UNIT_ID and APPLY_DATE. Sourced directly from the ATP table. Used in facilities management reports to track resource allocation and employee distribution across different sites. Enables spatial analysis of workforce demographics. Referenced in reports detailing location-specific operational metrics. No transformations applied.
         isBusinessKey: true
         name: LOCATION_ID
         nullable: true
@@ -36,7 +36,7 @@ operation:
           stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
         config: {}
         dataType: VARCHAR
-        description: ""
+        description: Identifier for the organizational unit within the company. Part of the composite key with LOCATION_ID and APPLY_DATE. Originates from the ATP table. Used in organizational charts and departmental performance dashboards. Facilitates analysis of employee distribution and resource allocation across different business units. No transformations applied. Essential for hierarchical reporting and management oversight.
         isBusinessKey: true
         name: ORGANIZATIONAL_UNIT_ID
         nullable: true
@@ -51,7 +51,7 @@ operation:
           stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
         config: {}
         dataType: VARCHAR
-        description: ""
+        description: Date when the employee data was applied or became effective. Part of the composite key with LOCATION_ID and ORGANIZATIONAL_UNIT_ID. Extracted directly from the ATP table. Used to track changes in employee counts and organizational structure over time. Enables trend analysis and historical reporting on workforce dynamics. No transformations applied. Critical for auditing and compliance purposes.
         isBusinessKey: true
         name: APPLY_DATE
         nullable: true
@@ -66,7 +66,7 @@ operation:
           stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
         config: {}
         dataType: NUMBER
-        description: ""
+        description: Number of employees transferred into or out of a location. Sourced as TRANSFER_PERSONS from the ATP table. Used in mobility reports to analyze internal employee movement. Helps identify trends in employee relocation and its impact on different locations. Supports workforce planning and resource management by tracking employee transfers. No transformations applied.
         name: TRANSFER_EMPLOYEES
         nullable: true
         sourceColumnReferences:
@@ -80,7 +80,7 @@ operation:
           stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
         config: {}
         dataType: NUMBER
-        description: ""
+        description: Count of employees currently active at a specific location. Derived from ACTIVE_PERSONS in the ATP table. Used in headcount reports and workforce utilization dashboards. Provides a snapshot of the current staffing levels at each location. Supports resource allocation and capacity planning. No transformations applied. Essential for operational monitoring and performance management.
         name: ACTIVE_EMPLOYEES
         nullable: true
         sourceColumnReferences:
@@ -94,7 +94,7 @@ operation:
           stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
         config: {}
         dataType: NUMBER
-        description: ""
+        description: Total number of employees at a location. Defaults to zero if the source value is null. Calculated using COALESCE on TOTAL_PERSONS from the TP table. Used in overall workforce size analysis and location-based reporting. Provides a comprehensive view of the total workforce at each location. Supports strategic planning and resource allocation decisions.
         name: TOTAL_EMPLOYEES1
         nullable: true
         sourceColumnReferences:
