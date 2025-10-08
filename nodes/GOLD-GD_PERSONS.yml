@@ -12,7 +12,7 @@ operation:
   deployEnabled: true
   description: Final employee segments with all attributes joined
   isMultisource: false
-  locationName: SILVER
+  locationName: GOLD
   materializationType: table
   metadata:
     appliedNodeTests: []

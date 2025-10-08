@@ -5,11 +5,11 @@ mappingDefinitions:
     database: SNOWFLAKE_SAMPLE_DATA
     schema: TPCH_SF1
   BRONZE_SAP:
-    database: ""
-    schema: ""
+    database: SOURCE
+    schema: SAP
   BRONZE_UKG:
-    database: ""
-    schema: ""
+    database: SOURCE
+    schema: UKG
   GOLD:
     database: COALESCE_PROD
     schema: GOLD

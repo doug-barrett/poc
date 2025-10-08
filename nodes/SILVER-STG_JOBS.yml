@@ -131,7 +131,7 @@ operation:
           joinCondition: |-
             FROM {{ ref('SILVER', 'SL_PERSONS') }} SP
             WHERE TO_DATE(SP.ALL_EXTENSION_EMPLOYEE_EXTENSION_EFF_DATED_PRIMARY_JOB_ACCOUNT_ENTRIES_EFFECTIVE_DATE, 'YYYY-MM-DD') IS NOT NULL
-        name: STG_NODE
+        name: STG_JOBS
         noLinkRefs: []
   name: STG_JOBS
   overrideSQL: false
