@@ -13,120 +13,6 @@ operation:
           values: []
         appliedColumnTests: {}
         columnReference:
-          columnCounter: 40b6616b-906f-4a29-aca7-d384432d15c0
-          stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
-        config: {}
-        dataType: VARCHAR(16777216)
-        defaultValue: ""
-        description: ""
-        name: JOB_ID
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 1d212603-d69c-4fd5-9160-fcfac25a3adb
-          stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
-        config: {}
-        dataType: NUMBER(38,0)
-        defaultValue: ""
-        description: ""
-        name: POSITION_NUMBER
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 9dd35029-5f74-4b75-a02b-ab5aa919c08b
-          stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
-        config: {}
-        dataType: NUMBER(38,0)
-        defaultValue: ""
-        description: ""
-        name: PERSONNEL_AREA_ID
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 20960df5-932c-42de-bfa4-9ce708064bc6
-          stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
-        config: {}
-        dataType: VARCHAR(16777216)
-        defaultValue: ""
-        description: ""
-        name: LEVEL_ID
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: fe28cee1-5c3d-4f9b-b529-432f38983f60
-          stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
-        config: {}
-        dataType: VARCHAR(16777216)
-        defaultValue: ""
-        description: ""
-        name: SHIFT
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
-          columnCounter: 8e369be8-3608-4348-94f5-230f36532fbf
-          stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
-        config: {}
-        dataType: NUMBER(38,3)
-        defaultValue: ""
-        description: ""
-        name: AMOUNT
-        nullable: true
-        primaryKey: false
-        sourceColumnReferences:
-          - columnReferences: []
-            transform: ""
-        transform: ""
-        uniqueKey: false
-      - acceptedValues:
-          strictMatch: true
-          values: []
-        appliedColumnTests: {}
-        columnReference:
           columnCounter: e3a74807-302d-4808-857b-cf8696fd0560
           stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
         config: {}
@@ -153,6 +39,82 @@ operation:
         defaultValue: ""
         description: ""
         name: END_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1f2feba7-858e-49fa-98c8-0b8c69ecd484
+          stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: CHANGE_DATE
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 13059ce9-0993-42f0-865c-a808cb42b2be
+          stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
+        config: {}
+        dataType: NUMBER(38,0)
+        defaultValue: ""
+        description: ""
+        name: OBJECT_ID
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 20c7823f-c0d0-4af4-99dd-f28138a80f18
+          stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: OBJECT_ABBREVIATION
+        nullable: true
+        primaryKey: false
+        sourceColumnReferences:
+          - columnReferences: []
+            transform: ""
+        transform: ""
+        uniqueKey: false
+      - acceptedValues:
+          strictMatch: true
+          values: []
+        appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7f0c0f09-3887-4337-820c-2ca122920cd9
+          stepCounter: 67d86ff2-ad6c-417b-ad6e-39c652f73392
+        config: {}
+        dataType: VARCHAR(16777216)
+        defaultValue: ""
+        description: ""
+        name: OBJECT_NAME
         nullable: true
         primaryKey: false
         sourceColumnReferences:

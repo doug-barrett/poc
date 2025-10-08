@@ -1,0 +1,266 @@
+fileVersion: 1
+id: 9ee1358e-526c-4dcf-9135-7eac891706ea
+name: GD_TIMECARDS
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: Final timecard data with transformed columns and standardized boolean fields
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: eb0ff842-6117-4afe-9efe-00cecb4d3a8c
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: UNIQUE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: eb0ff842-6117-4afe-9efe-00cecb4d3a8c
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: TS."UNIQUE_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 065af094-3c67-48e7-a585-d1b321f75198
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 065af094-3c67-48e7-a585-d1b321f75198
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: CAST(TS."JOB_ID" AS INT)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8b23df4e-43c0-406c-946b-3d99b253565a
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8b23df4e-43c0-406c-946b-3d99b253565a
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: TS."EMPLOYEE_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 25e54fc9-85df-42a9-b8b0-d66444eb70d1
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PAYCODE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 25e54fc9-85df-42a9-b8b0-d66444eb70d1
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: TS."PAY_CODE_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 42d099de-cd28-429a-91d7-dcc783546a0c
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: APPLY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 42d099de-cd28-429a-91d7-dcc783546a0c
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: TO_CHAR(TS."APPLY_DATE", 'YYYYMMDD')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 507149d6-c18f-485d-93d9-408de5f6c8d1
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: HOURS_AMOUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 507149d6-c18f-485d-93d9-408de5f6c8d1
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: TS."HOURS_AMOUNT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 960fe019-2586-4213-9d0e-7646a9b23628
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DAYS_AMOUNT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 960fe019-2586-4213-9d0e-7646a9b23628
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: TS."DAYS_AMOUNT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 46ed940f-de70-4adc-b80c-9c8bdf16798c
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: AMOUNT_TYPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 46ed940f-de70-4adc-b80c-9c8bdf16798c
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: TS."AMOUNT_TYPE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7761b977-a7b7-47ea-b2fb-0c68f847e8db
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7761b977-a7b7-47ea-b2fb-0c68f847e8db
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: SPLIT_PART(TS."LABOR_CATEGORIES_LABOR_STRING", ',', 1)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 66c4404b-ee8e-4e15-b7b5-4bbf6ab2f0b8
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 66c4404b-ee8e-4e15-b7b5-4bbf6ab2f0b8
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: SUBSTRING(SPLIT_PART(TS."LABOR_CATEGORIES_LABOR_STRING", ',', 1), 1, 1)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ae00b454-c03f-4d70-823c-3a91109108a4
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PAYROLL_AREA
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ae00b454-c03f-4d70-823c-3a91109108a4
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: SPLIT_PART(TS."LABOR_CATEGORIES_LABOR_STRING", ',', 2)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f67cec45-9eff-4ef5-8caf-74b83d626d47
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_PAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f67cec45-9eff-4ef5-8caf-74b83d626d47
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: TS."WAGES"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6edf0b84-f8a1-4306-87eb-60be209b2608
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: IS_JOB_TRANSFER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6edf0b84-f8a1-4306-87eb-60be209b2608
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: CASE WHEN TS."JOB_TRANSFER" THEN 'Yes' ELSE 'No' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c29800e0-4152-4f06-84ca-427e73f33d22
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: IS_LABOR_TRANSFER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c29800e0-4152-4f06-84ca-427e73f33d22
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: CASE WHEN TS."LABOR_TRANSFER" THEN 'Yes' ELSE 'No' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f85570d3-ea37-45da-8c07-626e6e7e568b
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: IS_FROM_CORRECTION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f85570d3-ea37-45da-8c07-626e6e7e568b
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: CASE WHEN TS."IS_FROM_CORRECTION" THEN 'Yes' ELSE 'No' END
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2d0ee426-bcef-4430-8960-41a3c763dc2a
+          stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORIGIN
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2d0ee426-bcef-4430-8960-41a3c763dc2a
+                stepCounter: 9ee1358e-526c-4dcf-9135-7eac891706ea
+            transform: TS."ORIGIN"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          TS: c0cca0ba-8830-411d-b175-5cca41b8fdfd
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: SL_TIMECARDS
+        join:
+          joinCondition: FROM {{ ref('SILVER', 'SL_TIMECARDS') }} TS
+        name: GD_TIMECARDS
+        noLinkRefs: []
+  name: GD_TIMECARDS
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node

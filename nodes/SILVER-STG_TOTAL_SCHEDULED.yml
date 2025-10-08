@@ -1,0 +1,155 @@
+fileVersion: 1
+id: 41979c04-5443-4ad9-b92c-13402cf55289
+name: STG_TOTAL_SCHEDULED
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculate total scheduled hours per employee per day
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 98e545c0-8902-4343-94a1-a3858449b178
+          stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 98e545c0-8902-4343-94a1-a3858449b178
+                stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+            transform: TC."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d234b6f4-a430-46bd-b513-d477c2c53eb7
+          stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: APPLY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d234b6f4-a430-46bd-b513-d477c2c53eb7
+                stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+            transform: TC."APPLY_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: df098b5a-ea7a-45e5-a493-5e5b259ed7db
+          stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: df098b5a-ea7a-45e5-a493-5e5b259ed7db
+                stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+            transform: TC."LOCATION_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0365e21b-ac93-4ea3-8ed2-fe29bfe96b7d
+          stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SCHEDULED_HOURS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0365e21b-ac93-4ea3-8ed2-fe29bfe96b7d
+                stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+            transform: SUM(TC."HOURS_AMOUNT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1fe268ce-2e69-4fe5-84a0-af5d2564c779
+          stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SCHEDULED_SHIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1fe268ce-2e69-4fe5-84a0-af5d2564c779
+                stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+            transform: TC."SHIFT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5412b0ca-72d1-4954-9cfc-fd31e7e7144d
+          stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SCHEDULED_SHIFT_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5412b0ca-72d1-4954-9cfc-fd31e7e7144d
+                stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+            transform: TC."SHIFT_CODE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0f03856d-8cb0-47ab-94e1-bdf66cb77904
+          stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: EXPECTED_TOTAL_PAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0f03856d-8cb0-47ab-94e1-bdf66cb77904
+                stepCounter: 41979c04-5443-4ad9-b92c-13402cf55289
+            transform: TC."TOTAL_PAY"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          PC: d615693d-ce0c-4823-ac08-4e25e7617c68
+          TC: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: GD_PAYCODES
+          - locationName: SILVER
+            nodeName: GD_TIMECARDS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'GD_TIMECARDS') }} TC
+            JOIN {{ ref('SILVER', 'GD_PAYCODES') }} PC
+              ON PC."ID" = TC."PAYCODE_ID"
+             AND PC."PARENT_NAME" LIKE '001%'
+            WHERE "ORIGIN" = 'Scheduled'
+            GROUP BY TC."PERSON_ID"
+                , TC."APPLY_DATE"
+                , TC."LOCATION_ID"
+                , TC."SHIFT"
+                , TC."TOTAL_PAY"
+                , TC."SHIFT_CODE"
+        name: STG_GD_TIMECARDS_GD_PAYCODES
+        noLinkRefs: []
+  name: STG_TOTAL_SCHEDULED
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,226 @@
+fileVersion: 1
+id: 8a26d648-a320-4a76-b00d-fea6884835fd
+name: STG_JOINED
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Join timecards with persons and paycodes for actual timecard data
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4dcbf01e-76ab-4089-b758-833c76f0a88d
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: APPLY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4dcbf01e-76ab-4089-b758-833c76f0a88d
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: TC."APPLY_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e4cb5ad4-171a-4d80-9711-316651ce5679
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e4cb5ad4-171a-4d80-9711-316651ce5679
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: TC."LOCATION_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 071e83fb-28dd-4f76-9735-5eb13118250a
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 071e83fb-28dd-4f76-9735-5eb13118250a
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: TC."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 847b6896-35b6-4dde-aa23-987eeae9193b
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: BASE_WAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 847b6896-35b6-4dde-aa23-987eeae9193b
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: P."BASE_WAGE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 98adefe3-3b1b-4e2c-98a5-4ee40d021313
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: HOURS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 98adefe3-3b1b-4e2c-98a5-4ee40d021313
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: TC."HOURS_AMOUNT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 93cb0c63-3b42-4c74-a2b7-b86bf967e0fa
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_PAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 93cb0c63-3b42-4c74-a2b7-b86bf967e0fa
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: TC."TOTAL_PAY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6c101cc7-5723-4153-9e62-ac20aa66a346
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PAYCODE_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6c101cc7-5723-4153-9e62-ac20aa66a346
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: PC."ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c8a6e184-57fc-48ef-862a-baf104a92f9e
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: IS_JOB_TRANSFER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c8a6e184-57fc-48ef-862a-baf104a92f9e
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: TC."IS_JOB_TRANSFER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22cefa18-0b8f-4d2d-b288-172410055970
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: IS_LABOR_TRANSFER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 22cefa18-0b8f-4d2d-b288-172410055970
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: TC."IS_LABOR_TRANSFER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 271bec05-faad-4dbf-942e-559cc252e922
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 271bec05-faad-4dbf-942e-559cc252e922
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: TC."SHIFT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 4031958a-e41b-4bf6-9f92-312b31df8e7a
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 4031958a-e41b-4bf6-9f92-312b31df8e7a
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: TC."SHIFT_CODE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d174ba7b-8955-476f-b893-db8db9223da0
+          stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PARENT_LABEL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d174ba7b-8955-476f-b893-db8db9223da0
+                stepCounter: 8a26d648-a320-4a76-b00d-fea6884835fd
+            transform: PC."PARENT_LABEL"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          P: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+          PC: d615693d-ce0c-4823-ac08-4e25e7617c68
+          TC: 9ee1358e-526c-4dcf-9135-7eac891706ea
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: GD_PAYCODES
+          - locationName: SILVER
+            nodeName: GD_PERSONS
+          - locationName: SILVER
+            nodeName: GD_TIMECARDS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'GD_TIMECARDS') }} TC
+            JOIN {{ ref('SILVER', 'GD_PERSONS') }} P
+              ON P."ID" = TC."PERSON_ID"
+             AND TO_DATE(TC."APPLY_DATE", 'YYYYMMDD')
+                 BETWEEN TO_DATE(P."START_DATE", 'YYYYMMDD') AND TO_DATE(P."END_DATE", 'YYYYMMDD')
+            JOIN {{ ref('SILVER', 'GD_PAYCODES') }} PC
+              ON PC."ID" = TC."PAYCODE_ID"
+             AND "PARENT_NAME" LIKE '001%'
+            WHERE TC."ORIGIN" = 'Actual'
+        name: STG_GD_TIMECARDS_GD_PERSONS_GD_PAYCODES
+        noLinkRefs: []
+  name: STG_JOINED
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

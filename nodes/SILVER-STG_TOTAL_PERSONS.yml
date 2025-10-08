@@ -1,0 +1,95 @@
+fileVersion: 1
+id: 81caf1d3-3621-4c62-9ff9-3ddc609504ae
+name: STG_TOTAL_PERSONS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculate total persons by organizational unit and date
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 55c6ef45-0306-4121-bf98-743cab7174f4
+          stepCounter: 81caf1d3-3621-4c62-9ff9-3ddc609504ae
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: APPLY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 55c6ef45-0306-4121-bf98-743cab7174f4
+                stepCounter: 81caf1d3-3621-4c62-9ff9-3ddc609504ae
+            transform: ATP."APPLY_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 787e5f2a-ad40-478c-a2f3-e950efa52dfb
+          stepCounter: 81caf1d3-3621-4c62-9ff9-3ddc609504ae
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORGANIZATIONAL_UNIT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 787e5f2a-ad40-478c-a2f3-e950efa52dfb
+                stepCounter: 81caf1d3-3621-4c62-9ff9-3ddc609504ae
+            transform: ATP."ORGANIZATIONAL_UNIT_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cce432c1-f818-4763-a222-923906bc6763
+          stepCounter: 81caf1d3-3621-4c62-9ff9-3ddc609504ae
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_PERSONS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cce432c1-f818-4763-a222-923906bc6763
+                stepCounter: 81caf1d3-3621-4c62-9ff9-3ddc609504ae
+            transform: COUNT(P."ID")
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          L: 57614280-ef9e-4250-9dcb-05de953d6635
+          P: 7aa616bd-13e3-47c9-97b2-80a561b8933e
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: GD_LOCATIONS
+          - locationName: SILVER
+            nodeName: GD_PERSONS
+          - locationName: SILVER
+            nodeName: STG_ACTIVE_AND_TRANSFER_PERSONS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_ACTIVE_AND_TRANSFER_PERSONS') }} ATP
+            JOIN {{ ref('SILVER', 'GD_LOCATIONS') }} L ON L."ORGANIZATIONAL_UNIT_ID" = ATP."ORGANIZATIONAL_UNIT_ID"
+            JOIN {{ ref('SILVER', 'GD_PERSONS') }} P ON P."LOCATION_ID" = L."ID"
+            GROUP BY ATP."APPLY_DATE"
+                , ATP."ORGANIZATIONAL_UNIT_ID"
+        name: STG_TOTAL_PERSONS
+        noLinkRefs: []
+  name: STG_TOTAL_PERSONS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

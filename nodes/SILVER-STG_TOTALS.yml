@@ -1,0 +1,193 @@
+fileVersion: 1
+id: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+name: STG_TOTALS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculate total pay and hours per employee per day
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6bdc5a3b-a588-4d19-b8d1-f8a300c54953
+          stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6bdc5a3b-a588-4d19-b8d1-f8a300c54953
+                stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+            transform: J."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7bfeebf2-ab90-42b2-8786-5cd2decf33b5
+          stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: APPLY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7bfeebf2-ab90-42b2-8786-5cd2decf33b5
+                stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+            transform: J."APPLY_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 0c2b20f8-28ed-4d2a-93c4-7c9c7a8eee70
+          stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 0c2b20f8-28ed-4d2a-93c4-7c9c7a8eee70
+                stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+            transform: J."LOCATION_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 7280dc60-6a6b-4531-b9e0-a5ba90a982f0
+          stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: EXPECTED_PAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 7280dc60-6a6b-4531-b9e0-a5ba90a982f0
+                stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+            transform: (J."BASE_WAGE" * SUM(J."HOURS"))
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ec3292d3-777d-4249-9889-23ca2b35cc50
+          stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_HOURS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ec3292d3-777d-4249-9889-23ca2b35cc50
+                stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+            transform: SUM(J."HOURS")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b9f424c0-19bc-44ff-bfba-3647991f5f84
+          stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_PAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b9f424c0-19bc-44ff-bfba-3647991f5f84
+                stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+            transform: J."TOTAL_PAY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 62b462b1-3e61-4000-85cf-67d8483d2e51
+          stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: IS_JOB_TRANSFER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 62b462b1-3e61-4000-85cf-67d8483d2e51
+                stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+            transform: J."IS_JOB_TRANSFER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 36d3a06a-10dc-4060-9d98-71f1fdaeb5ab
+          stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: IS_LABOR_TRANSFER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 36d3a06a-10dc-4060-9d98-71f1fdaeb5ab
+                stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+            transform: J."IS_LABOR_TRANSFER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f0dad9d9-eb90-42d6-b6af-bc59c164c2e0
+          stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f0dad9d9-eb90-42d6-b6af-bc59c164c2e0
+                stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+            transform: J."SHIFT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fb820b2f-2416-4291-a094-5e4d1e7f267c
+          stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fb820b2f-2416-4291-a094-5e4d1e7f267c
+                stepCounter: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+            transform: J."SHIFT_CODE"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          J: 8a26d648-a320-4a76-b00d-fea6884835fd
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_JOINED
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_JOINED') }} J
+            GROUP BY J."PERSON_ID"
+                , J."APPLY_DATE"
+                , J."LOCATION_ID"
+                , J."BASE_WAGE"
+                , J."TOTAL_PAY"
+                , J."SHIFT"
+                , J."SHIFT_CODE"
+                , J."IS_JOB_TRANSFER"
+                , J."IS_LABOR_TRANSFER"
+        name: STG_JOINED1
+        noLinkRefs: []
+  name: STG_TOTALS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

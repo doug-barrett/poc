@@ -1,0 +1,136 @@
+fileVersion: 1
+id: fc624fba-8f66-424f-b74d-8bde03ab0677
+name: STG_ACTIVE_AND_TRANSFER_PERSONS
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Calculate active and transfer persons by organizational unit and date
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2568ed4f-1f26-4a61-9f9f-1189cd70697b
+          stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: APPLY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2568ed4f-1f26-4a61-9f9f-1189cd70697b
+                stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+            transform: TS."APPLY_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 112ff20e-c4c5-4fde-9f16-d455cb63de65
+          stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 112ff20e-c4c5-4fde-9f16-d455cb63de65
+                stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+            transform: TS."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5c70ffc5-d3e0-42ff-bdbd-dc812115555c
+          stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: ORGANIZATIONAL_UNIT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5c70ffc5-d3e0-42ff-bdbd-dc812115555c
+                stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+            transform: L."ORGANIZATIONAL_UNIT_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 07281dbb-6b7d-49a0-8997-0effd30331ac
+          stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TRANSFER_PERSONS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 07281dbb-6b7d-49a0-8997-0effd30331ac
+                stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+            transform: COUNT(CASE WHEN COALESCE(TS."IS_JOB_TRANSFER", 'No') LIKE 'Yes' THEN 1 END)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 725c7524-e390-44e4-94e0-e1becfa6c657
+          stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ACTIVE_PERSONS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 725c7524-e390-44e4-94e0-e1becfa6c657
+                stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+            transform: COUNT(TS."PERSON_ID")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 8f6215b9-fbd2-46c9-b047-c82d43417418
+          stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 8f6215b9-fbd2-46c9-b047-c82d43417418
+                stepCounter: fc624fba-8f66-424f-b74d-8bde03ab0677
+            transform: TS."LOCATION_ID"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          L: 57614280-ef9e-4250-9dcb-05de953d6635
+          TS: cbdc31aa-6209-4b5c-b60e-503da252f039
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: GD_LOCATIONS
+          - locationName: SILVER
+            nodeName: GD_TIMECARD_SUMMARY
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'GD_TIMECARD_SUMMARY') }} TS
+            JOIN {{ ref('SILVER', 'GD_LOCATIONS') }} L ON L."ID" = TS."LOCATION_ID"
+            GROUP BY TS."APPLY_DATE"
+                , TS."PERSON_ID"
+                , L."ORGANIZATIONAL_UNIT_ID"
+                , TS."LOCATION_ID"
+        name: STG_GD_TIMECARD_SUMMARY_GD_LOCATIONS
+        noLinkRefs: []
+  name: STG_ACTIVE_AND_TRANSFER_PERSONS
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

@@ -1,0 +1,245 @@
+fileVersion: 1
+id: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+name: STG_PIVOTED
+operation:
+  config:
+    insertStrategy: INSERT
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+    truncateBefore: true
+  database: ""
+  deployEnabled: true
+  description: Pivot paycode hours by parent label
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 420ac1ac-2197-46e9-9f91-201a696a2632
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 420ac1ac-2197-46e9-9f91-201a696a2632
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."PERSON_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 22e49a65-2a82-4112-b160-bcf83054eb01
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: APPLY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 22e49a65-2a82-4112-b160-bcf83054eb01
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."APPLY_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: bbb29ef8-ce01-4e4b-a60b-389afdb869a6
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: bbb29ef8-ce01-4e4b-a60b-389afdb869a6
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."LOCATION_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d62f72c5-2675-463c-b94b-13254b6deb9d
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DBL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d62f72c5-2675-463c-b94b-13254b6deb9d
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."DBL"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c7c6cd1d-bda4-4744-8540-030a0e020d1b
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: GUARANTEE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c7c6cd1d-bda4-4744-8540-030a0e020d1b
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."GUARANTEE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: febb7517-a4e4-4073-8a03-b834c042f03b
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: HOLIDAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: febb7517-a4e4-4073-8a03-b834c042f03b
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."HOLIDAY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53613514-e622-4338-b1f1-fa67404360be
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: MISC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53613514-e622-4338-b1f1-fa67404360be
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."MISC"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 805a72c3-6f5c-467b-8ceb-546093704c1f
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: OT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 805a72c3-6f5c-467b-8ceb-546093704c1f
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."OT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 35a8da93-1ce9-4473-9c50-0768d268b382
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: OTHER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 35a8da93-1ce9-4473-9c50-0768d268b382
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."OTHER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1fdf3aff-ac24-4281-abae-fab77a02feed
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: PPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1fdf3aff-ac24-4281-abae-fab77a02feed
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."PPE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 80de7eb9-9cc7-4889-b8f3-56f429057c79
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: REG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 80de7eb9-9cc7-4889-b8f3-56f429057c79
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."REG"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 539f3bce-03d2-4b53-be94-239ccf8ad945
+          stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VACATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 539f3bce-03d2-4b53-be94-239ccf8ad945
+                stepCounter: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+            transform: P."VACATION"
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases: {}
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: GD_PAYCODES
+          - locationName: SILVER
+            nodeName: STG_JOINED
+        join:
+          joinCondition: |-
+            FROM (
+              SELECT DISTINCT J."PERSON_ID"
+                   , J."APPLY_DATE"
+                   , J."LOCATION_ID"
+                   , J."HOURS"
+                   , J."PARENT_LABEL" AS COMBINED_PAYCODE
+                FROM {{ ref('SILVER', 'STG_JOINED') }} J
+                LEFT JOIN {{ ref('SILVER', 'GD_PAYCODES') }} PC ON J."PAYCODE_ID" = PC."ID"
+            )
+            PIVOT (
+                SUM("HOURS") FOR COMBINED_PAYCODE IN (
+                    'DBL'       ,
+                    'GUARANTEE' ,
+                    'HOLIDAY'   ,
+                    'MISC'      ,
+                    'OT'        ,
+                    'OTHER'     ,
+                    'PPE'       ,
+                    'REG'       ,
+                    'VACATION'  
+                )) AS P ( "PERSON_ID"
+                        , "APPLY_DATE"
+                        , "LOCATION_ID"
+                        , "DBL"
+                        , "GUARANTEE"
+                        , "HOLIDAY"
+                        , "MISC"
+                        , "OT"
+                        , "OTHER"
+                        , "PPE"
+                        , "REG"
+                        , "VACATION"
+                        )
+        name: STG_JOINED_GD_PAYCODES
+        noLinkRefs: []
+  name: STG_PIVOTED
+  overrideSQL: false
+  schema: ""
+  sqlType: Stage
+  type: sql
+  version: 1
+type: Node

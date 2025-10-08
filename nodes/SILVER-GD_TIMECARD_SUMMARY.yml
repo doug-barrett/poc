@@ -1,0 +1,335 @@
+fileVersion: 1
+id: cbdc31aa-6209-4b5c-b60e-503da252f039
+name: GD_TIMECARD_SUMMARY
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: Final timecard summary with pivoted paycode hours and totals
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 5cf7c2e0-ff71-40d3-b7d8-78ecc7be1bbf
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: PERSON_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 5cf7c2e0-ff71-40d3-b7d8-78ecc7be1bbf
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: "\"PERSON_ID\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f88063ab-b949-4065-8d6d-53bc38dec98a
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: APPLY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f88063ab-b949-4065-8d6d-53bc38dec98a
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: "\"APPLY_DATE\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: ececaac1-defc-45f4-9671-65fd3ad1abd1
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: ececaac1-defc-45f4-9671-65fd3ad1abd1
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: "\"LOCATION_ID\""
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: a9d80e48-6e55-4e1b-b95a-6402f2dba96f
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: DBL
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: a9d80e48-6e55-4e1b-b95a-6402f2dba96f
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: P."DBL"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2277380b-55ad-4883-a8ab-173af2fa36b6
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: GUARANTEE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2277380b-55ad-4883-a8ab-173af2fa36b6
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: P."GUARANTEE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 136bd568-0808-491c-b8c9-0cbe03017b83
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: HOLIDAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 136bd568-0808-491c-b8c9-0cbe03017b83
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: P."HOLIDAY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c50af158-46da-43af-8ce7-3c17451bd7e1
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: MISC
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c50af158-46da-43af-8ce7-3c17451bd7e1
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: P."MISC"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: adb88c06-1724-468d-b10d-c6cef96b6101
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: OT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: adb88c06-1724-468d-b10d-c6cef96b6101
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: P."OT"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 17e33155-5a5a-486b-8b8b-0b22f02ebdf9
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: OTHER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 17e33155-5a5a-486b-8b8b-0b22f02ebdf9
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: P."OTHER"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 1d2fff8a-8d70-4ce7-b2fa-9f083efa70d1
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: PPE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 1d2fff8a-8d70-4ce7-b2fa-9f083efa70d1
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: P."PPE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: cc11f1ee-fbd2-4eef-8af7-88314196b2d1
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: REG
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: cc11f1ee-fbd2-4eef-8af7-88314196b2d1
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: P."REG"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: b635c79d-ade4-4963-8f0b-84850dc9fdb4
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: VACATION
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: b635c79d-ade4-4963-8f0b-84850dc9fdb4
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: P."VACATION"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d9df8a5a-15fc-4afd-a208-18b9cbee8fd3
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: EXPECTED_WAGE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d9df8a5a-15fc-4afd-a208-18b9cbee8fd3
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: T."EXPECTED_PAY"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 11380140-fffe-4520-af43-91465c5058e6
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_HOURS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 11380140-fffe-4520-af43-91465c5058e6
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: ROUND(T."TOTAL_HOURS", 2)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 9b6184d2-fd20-46f2-8122-423dfccb0a2b
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: SCHEDULED_HOURS
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 9b6184d2-fd20-46f2-8122-423dfccb0a2b
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: COALESCE(ROUND(S."SCHEDULED_HOURS", 2), 0)
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 6c11d588-1101-4f0c-a925-48579f2d7eff
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 6c11d588-1101-4f0c-a925-48579f2d7eff
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: COALESCE(T."SHIFT", S."SCHEDULED_SHIFT")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f6c07892-4d74-462a-8921-8af7b484fd88
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_PAY
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f6c07892-4d74-462a-8921-8af7b484fd88
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: COALESCE(T."TOTAL_PAY", S."EXPECTED_TOTAL_PAY")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: c41c3b25-5d35-432e-9dee-2eb49b24edd4
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: SHIFT_CODE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: c41c3b25-5d35-432e-9dee-2eb49b24edd4
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: COALESCE(T."SHIFT_CODE", S."SCHEDULED_SHIFT_CODE")
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: d48b75a6-0b8e-4dd9-a3ce-be229107ce6a
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: IS_JOB_TRANSFER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: d48b75a6-0b8e-4dd9-a3ce-be229107ce6a
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: COALESCE(T."IS_JOB_TRANSFER", 'No')
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 2b77ad01-b71b-4a18-b6b3-11690caa2028
+          stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        name: IS_LABOR_TRANSFER
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 2b77ad01-b71b-4a18-b6b3-11690caa2028
+                stepCounter: cbdc31aa-6209-4b5c-b60e-503da252f039
+            transform: COALESCE(T."IS_LABOR_TRANSFER", 'No')
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          P: 9ff8f994-5d1c-4509-8778-09b2255eb7c7
+          S: 41979c04-5443-4ad9-b92c-13402cf55289
+          T: 6913bedc-2ddd-4bf2-9840-c6beaeb5bc8d
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_PIVOTED
+          - locationName: SILVER
+            nodeName: STG_TOTAL_SCHEDULED
+          - locationName: SILVER
+            nodeName: STG_TOTALS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_PIVOTED') }} P
+            FULL OUTER JOIN {{ ref('SILVER', 'STG_TOTAL_SCHEDULED') }} S
+                      USING ("PERSON_ID", "APPLY_DATE", "LOCATION_ID")
+                  LEFT JOIN {{ ref('SILVER', 'STG_TOTALS') }} T
+                      USING ("PERSON_ID", "APPLY_DATE", "LOCATION_ID")
+        name: GD_TIMECARD_SUMMARY
+        noLinkRefs: []
+  name: GD_TIMECARD_SUMMARY
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node

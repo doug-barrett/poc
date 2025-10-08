@@ -132,7 +132,7 @@ operation:
             FROM {{ ref('SILVER', 'STG_PAY_SCALE') }} PAY_SCALE
             WHERE "START_DATE" < "END_DATE"
             GROUP BY "OBJECT_ABBREVIATION", "PERSONNEL_AREA_ID", "LEVEL_ID", "SHIFT", "AMOUNT", "START_DATE", "END_DATE"
-        name: STG_HRP1000_HRP1008_HRP1005_NODE2
+        name: PAYSCALE_LOOKUP_BZ
         noLinkRefs: []
   name: PAYSCALE_LOOKUP_BZ
   overrideSQL: false

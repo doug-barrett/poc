@@ -1,0 +1,134 @@
+fileVersion: 1
+id: 55805c40-056a-41a6-bbc4-cbf672f83964
+name: GD_HEADCOUNT
+operation:
+  config:
+    postSQL: ""
+    preSQL: ""
+    testsEnabled: true
+  database: ""
+  deployEnabled: true
+  description: Final headcount summary with active, transfer, and total employees by organizational unit
+  isMultisource: false
+  locationName: SILVER
+  materializationType: table
+  metadata:
+    appliedNodeTests: []
+    columns:
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: fd5fbf17-5120-483b-8360-dc8dbf145a68
+          stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+        config: {}
+        dataType: NUMBER
+        description: ""
+        isBusinessKey: true
+        name: LOCATION_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: fd5fbf17-5120-483b-8360-dc8dbf145a68
+                stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+            transform: ATP."LOCATION_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: f61a71c4-1717-415c-b493-5d075e3f2ec8
+          stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: ORGANIZATIONAL_UNIT_ID
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: f61a71c4-1717-415c-b493-5d075e3f2ec8
+                stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+            transform: ATP."ORGANIZATIONAL_UNIT_ID"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: db8a5868-7d2e-420b-bc2b-6073952c3771
+          stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+        config: {}
+        dataType: VARCHAR
+        description: ""
+        isBusinessKey: true
+        name: APPLY_DATE
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: db8a5868-7d2e-420b-bc2b-6073952c3771
+                stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+            transform: ATP."APPLY_DATE"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: e52f2c23-d8db-4125-88bc-963d4bbcb6fe
+          stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TRANSFER_EMPLOYEES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: e52f2c23-d8db-4125-88bc-963d4bbcb6fe
+                stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+            transform: ATP."TRANSFER_PERSONS"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 53482185-e697-4895-9b3d-e098acb6a461
+          stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: ACTIVE_EMPLOYEES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 53482185-e697-4895-9b3d-e098acb6a461
+                stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+            transform: ATP."ACTIVE_PERSONS"
+      - appliedColumnTests: {}
+        columnReference:
+          columnCounter: 47b97355-8771-46e0-a503-8360593c0430
+          stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+        config: {}
+        dataType: NUMBER
+        description: ""
+        name: TOTAL_EMPLOYEES
+        nullable: true
+        sourceColumnReferences:
+          - columnReferences:
+              - columnCounter: 47b97355-8771-46e0-a503-8360593c0430
+                stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
+            transform: COALESCE(TP."TOTAL_PERSONS", 0)
+    cteString: ""
+    description: ""
+    destinationName: ""
+    enabledColumnTestIDs: []
+    materializationOption: ""
+    sourceMapping:
+      - aliases:
+          ATP: fc624fba-8f66-424f-b74d-8bde03ab0677
+        customSQL:
+          customSQL: ""
+        dependencies:
+          - locationName: SILVER
+            nodeName: STG_ACTIVE_AND_TRANSFER_PERSONS
+          - locationName: SILVER
+            nodeName: STG_TOTAL_PERSONS
+        join:
+          joinCondition: |-
+            FROM {{ ref('SILVER', 'STG_ACTIVE_AND_TRANSFER_PERSONS') }} ATP
+            LEFT JOIN {{ ref('SILVER', 'STG_TOTAL_PERSONS') }} TP 
+              ON TP."APPLY_DATE" = ATP."APPLY_DATE"
+             AND TP."ORGANIZATIONAL_UNIT_ID" = ATP."ORGANIZATIONAL_UNIT_ID"
+        name: GD_HEADCOUNT
+        noLinkRefs: []
+  name: GD_HEADCOUNT
+  overrideSQL: false
+  schema: ""
+  sqlType: Dimension
+  type: sql
+  version: 1
+type: Node
