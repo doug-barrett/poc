@@ -90,12 +90,12 @@ operation:
             transform: ATP."ACTIVE_PERSONS"
       - appliedColumnTests: {}
         columnReference:
-          columnCounter: 47b97355-8771-46e0-a503-8360593c0430
+          columnCounter: 36ecc1e5-bff0-43e6-92f6-b1e993afd718
           stepCounter: 55805c40-056a-41a6-bbc4-cbf672f83964
         config: {}
         dataType: NUMBER
         description: ""
-        name: TOTAL_EMPLOYEES
+        name: TOTAL_EMPLOYEES1
         nullable: true
         sourceColumnReferences:
           - columnReferences:
